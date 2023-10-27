@@ -51,14 +51,6 @@ stages:
         script: |
           dotnet restore CincoDemo.sln
 
-    # - task: Bash@3
-    #   displayName: Build Test Project
-    #   inputs:
-    #     targetType: 'inline'
-    #     script: |
-    #       cd CincoApp.Tests/
-    #       dotnet build CincoApp.Tests.csproj
-
     - task: Bash@3
       displayName: Run Unit Test
       inputs:
@@ -66,6 +58,15 @@ stages:
         script: |
           cd CincoApp.Tests/
           dotnet test CincoApp.Tests.csproj --configuration Debug --collect:"XPlat Code Coverage"
+
+
+    - task: PublishTestResults@2
+      condition: succeededOrFailed()
+      inputs:
+        testResultsFormat: 'VSTest'
+        testResultsFiles: |
+          **/testResults.trx
+          **/*.trx
 
      # Publish code coverage report to the pipeline
     - task: PublishCodeCoverageResults@1
@@ -99,7 +100,7 @@ stages:
     #     targetType: 'inline'
     #     script: |
     #       cd CincoApp.Maui/
-    #       dotnet build -f net7.0-ios -c Release -p:BuildIpa=False
+    #       dotnet build -f net7.0-ios -c Release -p:BuildIpa=True
 
     # - task: CopyFiles@2
     #   displayName: Copy iOS App
@@ -117,21 +118,21 @@ stages:
         targetType: 'inline'
         script: |
           cd CincoApp.Maui/
-          dotnet publish -f net7.0-android -c Release
+          dotnet build -f net7.0-android -c Release
 
     # Signing Android App : https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-android-app
 
     - task: CopyFiles@2
       inputs:
         Contents: |
-          **\**\CincoApp.MAUI\bin\Release\net7.0-android\publish\*.apk
-          CincoApp.MAUI\bin\Release\net7.0-android\publish\*.apk
+          **\**\CincoApp.MAUI\bin\Release\net7.0-android\*.apk
+          CincoApp.MAUI\bin\Release\net7.0-android\*.apk
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
     - task: PublishBuildArtifacts@1
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop_ios_maccatalyst'
+        ArtifactName: 'drop_droid_maccatalyst'
         publishLocation: 'Container'
 
   - job: BuildWebApps
