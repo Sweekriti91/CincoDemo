@@ -61,6 +61,8 @@ File -> New .NET MAUI Blazor App and Run on all available TFMs to confirm everyt
 
 ## DevOps
 
+Installed Software and Tooling Versions for Azure DevOps Agents [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#software).
+
 ## Other Resources
 
 ### Docs/Samples/Tutorials

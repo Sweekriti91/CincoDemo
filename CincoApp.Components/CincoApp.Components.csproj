@@ -16,17 +16,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Data\" />
     <None Remove="Pages\" />
     <None Remove="Shared\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="Pages\" />
     <Folder Include="Shared\" />
     <Folder Include="wwwroot\css\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\css\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CincoApp.DataLayer\CincoApp.DataLayer.csproj" />
   </ItemGroup>
 </Project>

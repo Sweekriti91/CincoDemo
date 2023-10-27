@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using CincoApp.Components.Data;
+using CincoApp.DataLayer.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

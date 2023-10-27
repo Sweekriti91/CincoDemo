@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using CincoApp.Components.Data;
+using CincoApp.DataLayer.Data;
 
 namespace CincoApp.MAUI;
 

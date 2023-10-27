@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CincoApp.Web", "CincoApp.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CincoApp.MAUI", "CincoApp.MAUI\CincoApp.MAUI.csproj", "{0B299047-14E4-48DF-B66C-E849B740642A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CincoApp.DataLayer", "CincoApp.DataLayer\CincoApp.DataLayer.csproj", "{02B2B32C-E954-4C0F-84D3-136EC5E64907}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0B299047-14E4-48DF-B66C-E849B740642A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B299047-14E4-48DF-B66C-E849B740642A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B299047-14E4-48DF-B66C-E849B740642A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02B2B32C-E954-4C0F-84D3-136EC5E64907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02B2B32C-E954-4C0F-84D3-136EC5E64907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02B2B32C-E954-4C0F-84D3-136EC5E64907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02B2B32C-E954-4C0F-84D3-136EC5E64907}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
