@@ -145,11 +145,20 @@ stages:
 
     steps:
 
-    - task: UseDotNet@2
-      displayName: .NET Version
+    # - task: UseDotNet@2
+    #   displayName: .NET Version
+    #   inputs:
+    #     packageType: 'sdk'
+    #     version: '$(DotNetVersion)'
+
+    - task: Bash@3
+      displayName: Install .NET 8 Preview
       inputs:
-        packageType: 'sdk'
-        version: '$(DotNetVersion)'
+        targetType: 'inline'
+        script: |
+          curl -o dotnet-install.sh -sSL https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
+          sh dotnet-install.sh --version $(DotNetVersion)
+          dotnet --list-sdks
 
     - task: Bash@3
       displayName: Build Web App
