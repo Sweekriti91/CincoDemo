@@ -149,11 +149,19 @@ stages:
         packageType: 'sdk'
         version: '$(DotNetVersion)'
 
-    - task: DotNetCoreCLI@2
+    - task: Bash@3
+      displayName: Build Web App
       inputs:
-        command: 'publish'
-        publishWebProjects: true
-        arguments: '--configuration Release --output $(build.artifactstagingdirectory)'
+        targetType: 'inline'
+        script: |
+          cd CincoApp.Web/
+          dotnet publish -c Release --output ./webArtifact
+    - task: CopyFiles@2
+      inputs:
+        Contents: |
+          **\**\CincoApp.Web\webArtifact\**
+          CincoApp.Web\webArtifact\**
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
     - task: PublishBuildArtifacts@1
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
