@@ -9,7 +9,7 @@ stages:
 - stage: BuildMacCatalyst
   jobs:
   - job: BuildMAUIApps
-    displayName: Build Cinco App
+    displayName: Build Cinco Maui Apps
     pool:
       vmImage: 'macOS-13'
       demands:
@@ -51,19 +51,21 @@ stages:
         script: |
           dotnet restore CincoDemo.sln
 
-    - task: Bash@3
-      displayName: Build Test Project
-      inputs:
-        targetType: 'inline'
-        script: |
-          cd CincoApp.Tests/
-          dotnet build CincoApp.Tests.csproj
+    # - task: Bash@3
+    #   displayName: Build Test Project
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       cd CincoApp.Tests/
+    #       dotnet build CincoApp.Tests.csproj
 
     - task: Bash@3
       displayName: Run Unit Test
       inputs:
         targetType: 'inline'
-        script: 'dotnet test SweekyxTest\SweekyxTest.csproj --configuration Debug --collect:"XPlat Code Coverage"'
+        script: |
+          cd CincoApp.Tests/
+          dotnet test CincoApp.Tests.csproj --configuration Debug --collect:"XPlat Code Coverage"
 
      # Publish code coverage report to the pipeline
     - task: PublishCodeCoverageResults@1
@@ -108,6 +110,7 @@ stages:
     #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     
   # https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
+  
     - task: Bash@3
       displayName: Build Android App
       inputs:

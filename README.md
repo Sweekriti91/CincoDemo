@@ -71,7 +71,10 @@ Installed Software and Tooling Versions for Azure DevOps Agents [here](https://l
 - [Android Publish Docs](https://learn.microsoft.com/en-us/dotnet/maui/android/deployment/)
 - [iOS Publish Docs](https://learn.microsoft.com/en-us/dotnet/maui/ios/deployment/)
 - [MacCatalyst Publish Docs](https://learn.microsoft.com/en-us/dotnet/maui/mac-catalyst/deployment/)
-- [Blazor Web Publish]()
+- [Host and deploy server-side Blazor apps](https://learn.microsoft.com/en-us/aspnet/core/blazor/host-and-deploy/server?view=aspnetcore-7.0)
+- [Host and deploy ASP.NET Core Blazor](https://learn.microsoft.com/en-us/aspnet/core/blazor/host-and-deploy/?view=aspnetcore-7.0&tabs=visual-studio)
+- [Azure Static WebApp Deploy Azure DevOps Task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-static-web-app-v0?view=azure-pipelines)
+
 ## Other Resources
 
 ### Docs/Samples/Tutorials
