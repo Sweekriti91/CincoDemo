@@ -29,6 +29,7 @@ stages:
     #   inputs:
     #     provisioningProfileLocation: 'secureFiles'
     #     provProfileSecureFile: '<IOS_PROVISIONING_PROFILE>'
+
     - task: UseDotNet@2
       displayName: .NET Version
       inputs:
@@ -50,6 +51,26 @@ stages:
         script: |
           dotnet restore CincoDemo.sln
 
+    - task: Bash@3
+      displayName: Build Test Project
+      inputs:
+        targetType: 'inline'
+        script: 'dotnet build CincoApp.Tests\CincoApp.Tests.csproj'
+
+    - task: Bash@3
+      displayName: Run Unit Test
+      inputs:
+        targetType: 'inline'
+        script: 'dotnet test SweekyxTest\SweekyxTest.csproj --configuration Debug --collect:"XPlat Code Coverage"'
+
+     # Publish code coverage report to the pipeline
+    - task: PublishCodeCoverageResults@1
+      condition: succeededOrFailed()
+      displayName: 'Publish code coverage'
+      inputs:
+        codeCoverageTool: Cobertura
+        summaryFileLocation: $(System.DefaultWorkingDirectory)/*/*.cobertura.xml # using ** instead of * finds duplicate coverage files
+
     # https://docs.microsoft.com/en-us/dotnet/maui/macos/deployment/overview
     - task: Bash@3
       displayName: Build MacCatalyst App
@@ -68,21 +89,21 @@ stages:
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
     # https://learn.microsoft.com/en-us/dotnet/maui/ios/deployment/
-    - task: Bash@3
-      displayName: Build iOS App
-      inputs:
-        targetType: 'inline'
-        script: |
-          cd CincoApp.Maui/
-          dotnet build -f net7.0-ios -c Release -p:BuildIpa=False
+    # - task: Bash@3
+    #   displayName: Build iOS App
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       cd CincoApp.Maui/
+    #       dotnet build -f net7.0-ios -c Release -p:BuildIpa=False
 
-    - task: CopyFiles@2
-      displayName: Copy iOS App
-      inputs:
-        Contents: |
-          **/*.app
-          **/*.ipa
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    # - task: CopyFiles@2
+    #   displayName: Copy iOS App
+    #   inputs:
+    #     Contents: |
+    #       **/*.app
+    #       **/*.ipa
+    #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     
   # https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
     - task: Bash@3
@@ -91,7 +112,7 @@ stages:
         targetType: 'inline'
         script: |
           cd CincoApp.Maui/
-          dotnet build -f net7.0-android -c Release
+          dotnet publish -f net7.0-android -c Release
 
     # Signing Android App : https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-android-app
 

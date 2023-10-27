@@ -54,9 +54,12 @@ File -> New .NET MAUI Blazor App and Run on all available TFMs to confirm everyt
 ```
 .
 ├── CincoApp.Components => Shared Blazor Components
+├── CincoApp.DataLayer => Data Abstraction Layer
 ├── CincoApp.MAUI => .NET MAUI Blazor App
 ├── CincoApp.Web => Blazor Server App
-
+├── CincoDemo.sln
+├── README.md
+└── azure-pipelines.yml
 ```
 
 ## DevOps
