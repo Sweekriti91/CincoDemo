@@ -19,5 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CincoApp.DataLayer\CincoApp.DataLayer.csproj" />
+    <ProjectReference Include="..\CincoApp.MAUI\CincoApp.MAUI.csproj" />
   </ItemGroup>
 </Project>

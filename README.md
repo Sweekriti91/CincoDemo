@@ -56,16 +56,22 @@ File -> New .NET MAUI Blazor App and Run on all available TFMs to confirm everyt
 ├── CincoApp.Components => Shared Blazor Components
 ├── CincoApp.DataLayer => Data Abstraction Layer
 ├── CincoApp.MAUI => .NET MAUI Blazor App
+├── CincoApp.Tests => NUnit tests
 ├── CincoApp.Web => Blazor Server App
 ├── CincoDemo.sln
 ├── README.md
-└── azure-pipelines.yml
+└── azure-pipelines.yml => Azure DevOps Pipeline File
 ```
 
 ## DevOps
 
 Installed Software and Tooling Versions for Azure DevOps Agents [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#software).
 
+- [Getting Started with .NET MAUI and DevOps](https://devblogs.microsoft.com/dotnet/devops-for-dotnet-maui/)
+- [Android Publish Docs](https://learn.microsoft.com/en-us/dotnet/maui/android/deployment/)
+- [iOS Publish Docs](https://learn.microsoft.com/en-us/dotnet/maui/ios/deployment/)
+- [MacCatalyst Publish Docs](https://learn.microsoft.com/en-us/dotnet/maui/mac-catalyst/deployment/)
+- [Blazor Web Publish]()
 ## Other Resources
 
 ### Docs/Samples/Tutorials

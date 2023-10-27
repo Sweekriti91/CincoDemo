@@ -55,7 +55,9 @@ stages:
       displayName: Build Test Project
       inputs:
         targetType: 'inline'
-        script: 'dotnet build CincoApp.Tests\CincoApp.Tests.csproj'
+        script: |
+          cd CincoApp.Tests/
+          dotnet build CincoApp.Tests.csproj
 
     - task: Bash@3
       displayName: Run Unit Test
