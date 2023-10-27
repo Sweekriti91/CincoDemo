@@ -43,13 +43,34 @@ Sample app to demostrate a Shared Blazor Component Library with shared controls 
 ```
 <MauiVersion>8.0.0-rc.2.9373</MauiVersion> 
 ```
+- Delete `bin` and `obj` folders. 
+- `dotnet restore` to add these new nuget packages and fix references.
 
 ## Test Environment
 File -> New .NET MAUI Blazor App and Run on all available TFMs to confirm everything works!
 
 ## Project Structure
 
+```
+.
+├── CincoApp.Components => Shared Blazor Components
+├── CincoApp.MAUI => .NET MAUI Blazor App
+├── CincoApp.Web => Blazor Server App
+
+```
 
 ## DevOps
 
-## Other Resources
+## Other Helpful Resources
+
+### Docs/Samples/Tutorials
+
+- https://learn.microsoft.com/en-us/aspnet/core/blazor/hybrid/class-libraries?view=aspnetcore-7.0
+- Sample App : https://github.com/microsoft/dotnet-podcasts/tree/main
+- Blazor Workshop : https://github.com/dotnet-presentations/blazor-workshop/tree/main
+
+### Component Library
+- [Radzen Blazor Components](https://blazor.radzen.com/) *Free, Open Source*
+- [MudBlazor](https://mudblazor.com/) *Free, Open Source*
+- [SyncFusion](https://www.syncfusion.com/blazor-components) *Paid*
+- [Telerik](https://www.telerik.com/blazor-ui) *Paid*
