@@ -61,7 +61,7 @@ stages:
         script: |
           dotnet restore CincoDemo.sln
 
-     - task: Bash@3
+    - task: Bash@3
       displayName: Run Unit Test
       inputs:
         targetType: 'inline'
