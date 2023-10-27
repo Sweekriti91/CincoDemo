@@ -84,7 +84,7 @@ stages:
         targetType: 'inline'
         script: |
           cd CincoApp.Maui/
-          dotnet publish -f net7.0-maccatalyst -c Release -p:BuildIpa=True -o ./artifacts
+          dotnet publish -f net8.0-maccatalyst -c Release -p:BuildIpa=True -o ./artifacts
 
     - task: CopyFiles@2
       displayName: Copy MacCatalyst App
@@ -119,7 +119,7 @@ stages:
         targetType: 'inline'
         script: |
           cd CincoApp.Maui/
-          dotnet publish -f net7.0-android -c Release
+          dotnet publish -f net8.0-android -c Release
 
     # Signing Android App : https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-android-app
 
