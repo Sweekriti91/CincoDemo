@@ -139,7 +139,7 @@ stages:
   - job: BuildWebApps
     displayName: Build Cinco Web Apps
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: 'macOS-13'
       demands:
       - MSBuild
 
