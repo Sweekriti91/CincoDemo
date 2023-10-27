@@ -337,3 +337,9 @@ ASALocalRun/
 
 # Visual Studio Code folder
 .vscode/
+
+# Xamarin
+Resource.designer.cs
+
+*.DS_Store
+*.zip
