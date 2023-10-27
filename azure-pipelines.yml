@@ -73,8 +73,8 @@ stages:
       displayName: 'Publish code coverage'
       inputs:
         codeCoverageTool: Cobertura
-        summaryFileLocation: $(System.DefaultWorkingDirectory)/*/*.cobertura.xml # using ** instead of * finds duplicate coverage files
-
+        summaryFileLocation: $(System.DefaultWorkingDirectory)/**/*.cobertura.xml 
+        
     # https://docs.microsoft.com/en-us/dotnet/maui/macos/deployment/overview
     - task: Bash@3
       displayName: Build MacCatalyst App
@@ -133,3 +133,31 @@ stages:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop_ios_maccatalyst'
         publishLocation: 'Container'
+
+  - job: BuildWebApps
+    displayName: Build Cinco Web Apps
+    pool:
+      vmImage: 'ubuntu-latest'
+      demands:
+      - MSBuild
+
+    steps:
+
+    - task: UseDotNet@2
+      displayName: .NET Version
+      inputs:
+        packageType: 'sdk'
+        version: '$(DotNetVersion)'
+
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'publish'
+        publishWebProjects: true
+        arguments: '--configuration Release --output $(build.artifactstagingdirectory)'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'Web_drop'
+        publishLocation: 'Container'
+
+ 
