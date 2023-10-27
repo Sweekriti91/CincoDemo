@@ -2,6 +2,11 @@
 
 Sample app to demostrate a Shared Blazor Component Library with shared controls that are used by a Blazor Server App and a .NET MAUI Hybrid App. 
 
+| branch | build status |
+| --- | --- |
+| main(net7) | [![Build Status](https://dotnetcst.visualstudio.com/MobCAT/_apis/build/status%2FSweekriti91.CincoDemo?branchName=main)](https://dotnetcst.visualstudio.com/MobCAT/_build/latest?definitionId=175&branchName=main) |
+| net8 | [![Build Status](https://dotnetcst.visualstudio.com/MobCAT/_apis/build/status%2FSweekriti91.CincoDemo?branchName=net8)](https://dotnetcst.visualstudio.com/MobCAT/_build/latest?definitionId=175&branchName=net8) |
+
 
 ## Quick Links
 
