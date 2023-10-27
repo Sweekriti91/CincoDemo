@@ -50,21 +50,14 @@ stages:
         script: |
           dotnet restore CincoDemo.sln
 
-    - task: Bash@3
-      displayName: Change to .NET MAUI Folder
-      inputs:
-        targetType: 'inline'
-        script: |
-          cd CincoApp.Maui/
-
     # https://docs.microsoft.com/en-us/dotnet/maui/macos/deployment/overview
     - task: Bash@3
       displayName: Build MacCatalyst App
       inputs:
         targetType: 'inline'
         script: |
+          cd CincoApp.Maui/
           dotnet publish -f net7.0-maccatalyst -c Release -p:BuildIpa=True -o ./artifacts
-
 
     - task: CopyFiles@2
       displayName: Copy MacCatalyst App
@@ -80,6 +73,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
+          cd CincoApp.Maui/
           dotnet build -f net7.0-ios -c Release -p:BuildIpa=False
 
     - task: CopyFiles@2
@@ -96,6 +90,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
+          cd CincoApp.Maui/
           dotnet build -f net7.0-android -c Release
 
     # Signing Android App : https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-android-app
