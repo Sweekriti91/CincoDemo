@@ -36,14 +36,14 @@ stages:
     #     packageType: 'sdk'
     #     version: '$(DotNetVersion)'
 
-      - task: Bash@3
-        displayName: Restore nuget
-        inputs:
-          targetType: 'inline'
-          script: |
-            curl -o dotnet-install.sh -sSL https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
-            sh dotnet-install.sh --version $(DotNetVersion)
-            dotnet --list-sdks
+    - task: Bash@3
+      displayName: Restore nuget
+      inputs:
+        targetType: 'inline'
+        script: |
+          curl -o dotnet-install.sh -sSL https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
+          sh dotnet-install.sh --version $(DotNetVersion)
+          dotnet --list-sdks
 
 
     - task: Bash@3
