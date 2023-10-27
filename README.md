@@ -83,6 +83,7 @@ Installed Software and Tooling Versions for Azure DevOps Agents [here](https://l
 
 ### Docs/Samples/Tutorials
 
+- [Dotnet CLI tool](https://learn.microsoft.com/en-us/dotnet/core/tools/)
 - [Razor Component Sharing Doc](https://learn.microsoft.com/en-us/aspnet/core/blazor/hybrid/class-libraries?view=aspnetcore-7.0)
 - Sample App : https://github.com/microsoft/dotnet-podcasts/tree/main
 - Blazor Workshop : https://github.com/dotnet-presentations/blazor-workshop/tree/main
