@@ -42,15 +42,9 @@ stages:
           targetType: 'inline'
           script: |
             curl -o dotnet-install.sh -sSL https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
-            sh dotnet-install.sh --version ${{env.DOTNETVERSION}}
+            sh dotnet-install.sh --version $(DotNetVersion)
             dotnet --list-sdks
 
-          # - name: Setup .NET SDK ${{env.DOTNETVERSION}}
-      #   shell: bash
-      #   run: |
-      #     curl -o dotnet-install.sh -sSL https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
-      #     sh dotnet-install.sh --version ${{env.DOTNETVERSION}}
-      #     dotnet --list-sdks
 
     - task: Bash@3
       displayName: Install MAUI
