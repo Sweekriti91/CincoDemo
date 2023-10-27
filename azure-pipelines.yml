@@ -61,13 +61,21 @@ stages:
         script: |
           dotnet restore CincoDemo.sln
 
-    - task: Bash@3
+     - task: Bash@3
       displayName: Run Unit Test
       inputs:
         targetType: 'inline'
         script: |
           cd CincoApp.Tests/
-          dotnet test CincoApp.Tests.csproj --configuration Debug --collect:"XPlat Code Coverage"
+          dotnet test CincoApp.Tests.csproj --logger trx --configuration Debug --collect:"XPlat Code Coverage"
+
+    - task: PublishTestResults@2
+      condition: succeededOrFailed()
+      inputs:
+        testResultsFormat: 'VSTest'
+        testResultsFiles: |
+          **/testResults.trx
+          **/*.trx
 
      # Publish code coverage report to the pipeline
     - task: PublishCodeCoverageResults@1
