@@ -57,7 +57,7 @@ stages:
         targetType: 'inline'
         script: |
           cd CincoApp.Tests/
-          dotnet test CincoApp.Tests.csproj --configuration Debug --collect:"XPlat Code Coverage"
+          dotnet test CincoApp.Tests.csproj --logger trx --configuration Debug --collect:"XPlat Code Coverage"
 
 
     - task: PublishTestResults@2
