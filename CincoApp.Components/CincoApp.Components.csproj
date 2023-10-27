@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Data\" />
+    <None Remove="Pages\" />
+    <None Remove="Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Pages\" />
+    <Folder Include="Shared\" />
+    <Folder Include="wwwroot\css\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\css\" />
+  </ItemGroup>
+</Project>
