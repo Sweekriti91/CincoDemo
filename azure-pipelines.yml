@@ -37,7 +37,7 @@ stages:
     #     version: '$(DotNetVersion)'
 
     - task: Bash@3
-      displayName: Restore nuget
+      displayName: Install .NET 8 Preview
       inputs:
         targetType: 'inline'
         script: |
