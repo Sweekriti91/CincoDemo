@@ -134,8 +134,8 @@ stages:
     - task: CopyFiles@2
       inputs:
         Contents: |
-          **\**\CincoApp.MAUI\bin\Release\net7.0-android\publish\*.apk
-          CincoApp.MAUI\bin\Release\net7.0-android\publish\*.apk
+          **\**\CincoApp.MAUI\bin\Release\net8.0-android\publish\*.apk
+          .\CincoApp.MAUI\bin\Release\net8.0-android\publish\*.apk
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
     - task: PublishBuildArtifacts@1
