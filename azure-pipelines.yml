@@ -54,120 +54,120 @@ stages:
           dotnet nuget locals all --clear
           dotnet workload install maui macos ios wasm-tools
 
-  #   - task: Bash@3
-  #     displayName: Restore nuget
-  #     inputs:
-  #       targetType: 'inline'
-  #       script: |
-  #         dotnet restore CincoDemo.sln
+    - task: Bash@3
+      displayName: Restore nuget
+      inputs:
+        targetType: 'inline'
+        script: |
+          dotnet restore CincoDemo.sln
 
-  #   - task: Bash@3
-  #     displayName: Run Unit Test
-  #     inputs:
-  #       targetType: 'inline'
-  #       script: |
-  #         cd CincoApp.Tests/
-  #         dotnet test CincoApp.Tests.csproj --configuration Debug --collect:"XPlat Code Coverage"
+    - task: Bash@3
+      displayName: Run Unit Test
+      inputs:
+        targetType: 'inline'
+        script: |
+          cd CincoApp.Tests/
+          dotnet test CincoApp.Tests.csproj --configuration Debug --collect:"XPlat Code Coverage"
 
-  #    # Publish code coverage report to the pipeline
-  #   - task: PublishCodeCoverageResults@1
-  #     condition: succeededOrFailed()
-  #     displayName: 'Publish code coverage'
-  #     inputs:
-  #       codeCoverageTool: Cobertura
-  #       summaryFileLocation: $(System.DefaultWorkingDirectory)/**/*.cobertura.xml 
+     # Publish code coverage report to the pipeline
+    - task: PublishCodeCoverageResults@1
+      condition: succeededOrFailed()
+      displayName: 'Publish code coverage'
+      inputs:
+        codeCoverageTool: Cobertura
+        summaryFileLocation: $(System.DefaultWorkingDirectory)/**/*.cobertura.xml 
         
-  #   # https://docs.microsoft.com/en-us/dotnet/maui/macos/deployment/overview
-  #   - task: Bash@3
-  #     displayName: Build MacCatalyst App
-  #     inputs:
-  #       targetType: 'inline'
-  #       script: |
-  #         cd CincoApp.Maui/
-  #         dotnet publish -f net7.0-maccatalyst -c Release -p:BuildIpa=True -o ./artifacts
+    # https://docs.microsoft.com/en-us/dotnet/maui/macos/deployment/overview
+    - task: Bash@3
+      displayName: Build MacCatalyst App
+      inputs:
+        targetType: 'inline'
+        script: |
+          cd CincoApp.Maui/
+          dotnet publish -f net7.0-maccatalyst -c Release -p:BuildIpa=True -o ./artifacts
 
-  #   - task: CopyFiles@2
-  #     displayName: Copy MacCatalyst App
-  #     inputs:
-  #       Contents: |
-  #         **/**/CincoApp.MAUI/artifacts/**/*.pkg
-  #         CincoApp.MAUI/artifacts/**/*.pkg
-  #       TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: CopyFiles@2
+      displayName: Copy MacCatalyst App
+      inputs:
+        Contents: |
+          **/**/CincoApp.MAUI/artifacts/**/*.pkg
+          CincoApp.MAUI/artifacts/**/*.pkg
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-  #   # https://learn.microsoft.com/en-us/dotnet/maui/ios/deployment/
-  #   # - task: Bash@3
-  #   #   displayName: Build iOS App
-  #   #   inputs:
-  #   #     targetType: 'inline'
-  #   #     script: |
-  #   #       cd CincoApp.Maui/
-  #   #       dotnet build -f net7.0-ios -c Release -p:BuildIpa=False
+    # https://learn.microsoft.com/en-us/dotnet/maui/ios/deployment/
+    # - task: Bash@3
+    #   displayName: Build iOS App
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       cd CincoApp.Maui/
+    #       dotnet build -f net7.0-ios -c Release -p:BuildIpa=False
 
-  #   # - task: CopyFiles@2
-  #   #   displayName: Copy iOS App
-  #   #   inputs:
-  #   #     Contents: |
-  #   #       **/*.app
-  #   #       **/*.ipa
-  #   #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    # - task: CopyFiles@2
+    #   displayName: Copy iOS App
+    #   inputs:
+    #     Contents: |
+    #       **/*.app
+    #       **/*.ipa
+    #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     
-  # # https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
+  # https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
   
-  #   - task: Bash@3
-  #     displayName: Build Android App
-  #     inputs:
-  #       targetType: 'inline'
-  #       script: |
-  #         cd CincoApp.Maui/
-  #         dotnet publish -f net7.0-android -c Release
+    - task: Bash@3
+      displayName: Build Android App
+      inputs:
+        targetType: 'inline'
+        script: |
+          cd CincoApp.Maui/
+          dotnet publish -f net7.0-android -c Release
 
-  #   # Signing Android App : https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-android-app
+    # Signing Android App : https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-android-app
 
-  #   - task: CopyFiles@2
-  #     inputs:
-  #       Contents: |
-  #         **\**\CincoApp.MAUI\bin\Release\net7.0-android\publish\*.apk
-  #         CincoApp.MAUI\bin\Release\net7.0-android\publish\*.apk
-  #       TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: CopyFiles@2
+      inputs:
+        Contents: |
+          **\**\CincoApp.MAUI\bin\Release\net7.0-android\publish\*.apk
+          CincoApp.MAUI\bin\Release\net7.0-android\publish\*.apk
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-  #   - task: PublishBuildArtifacts@1
-  #     inputs:
-  #       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-  #       ArtifactName: 'drop_ios_maccatalyst'
-  #       publishLocation: 'Container'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop_ios_maccatalyst'
+        publishLocation: 'Container'
 
-  # - job: BuildWebApps
-  #   displayName: Build Cinco Web Apps
-  #   pool:
-  #     vmImage: 'ubuntu-latest'
-  #     demands:
-  #     - MSBuild
+  - job: BuildWebApps
+    displayName: Build Cinco Web Apps
+    pool:
+      vmImage: 'ubuntu-latest'
+      demands:
+      - MSBuild
 
-  #   steps:
+    steps:
 
-  #   - task: UseDotNet@2
-  #     displayName: .NET Version
-  #     inputs:
-  #       packageType: 'sdk'
-  #       version: '$(DotNetVersion)'
+    - task: UseDotNet@2
+      displayName: .NET Version
+      inputs:
+        packageType: 'sdk'
+        version: '$(DotNetVersion)'
 
-  #   - task: Bash@3
-  #     displayName: Build Web App
-  #     inputs:
-  #       targetType: 'inline'
-  #       script: |
-  #         cd CincoApp.Web/
-  #         dotnet publish -c Release --output ./webArtifact
-  #   - task: CopyFiles@2
-  #     inputs:
-  #       Contents: |
-  #         **\**\CincoApp.Web\webArtifact\**
-  #         CincoApp.Web\webArtifact\**
-  #       TargetFolder: '$(Build.ArtifactStagingDirectory)'
-  #   - task: PublishBuildArtifacts@1
-  #     inputs:
-  #       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-  #       ArtifactName: 'Web_drop'
-  #       publishLocation: 'Container'
+    - task: Bash@3
+      displayName: Build Web App
+      inputs:
+        targetType: 'inline'
+        script: |
+          cd CincoApp.Web/
+          dotnet publish -c Release --output ./webArtifact
+    - task: CopyFiles@2
+      inputs:
+        Contents: |
+          **\**\CincoApp.Web\webArtifact\**
+          CincoApp.Web\webArtifact\**
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'Web_drop'
+        publishLocation: 'Container'
 
  
