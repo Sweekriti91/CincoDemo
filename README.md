@@ -92,3 +92,7 @@ Installed Software and Tooling Versions for Azure DevOps Agents [here](https://l
 - [MudBlazor](https://mudblazor.com/) *Free, Open Source*
 - [SyncFusion](https://www.syncfusion.com/blazor-components) *Paid*
 - [Telerik](https://www.telerik.com/blazor-ui) *Paid*
+
+### Material Styling 
+- https://material-blazor.com/docs/
+- https://www.matblazor.com/
