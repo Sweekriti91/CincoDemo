@@ -61,11 +61,11 @@ File -> New .NET MAUI Blazor App and Run on all available TFMs to confirm everyt
 
 ## DevOps
 
-## Other Helpful Resources
+## Other Resources
 
 ### Docs/Samples/Tutorials
 
-- https://learn.microsoft.com/en-us/aspnet/core/blazor/hybrid/class-libraries?view=aspnetcore-7.0
+- [Razor Component Sharing Doc](https://learn.microsoft.com/en-us/aspnet/core/blazor/hybrid/class-libraries?view=aspnetcore-7.0)
 - Sample App : https://github.com/microsoft/dotnet-podcasts/tree/main
 - Blazor Workshop : https://github.com/dotnet-presentations/blazor-workshop/tree/main
 
