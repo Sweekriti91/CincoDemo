@@ -12,7 +12,7 @@ env:
     DOTNETVERSION: 8.0.100-rc.2.23502.2
 
 jobs:
-  buildmacCatalyst:
+  buildMauiLib:
     runs-on: macos-13
     
     steps:
@@ -42,4 +42,4 @@ jobs:
     
       - name: Restore nuget packages
         run: |
-          CincoDemo.sln
+          dotnet restore CincoDemo.sln
