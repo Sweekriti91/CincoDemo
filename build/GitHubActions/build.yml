@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-    DOTNETVERSION: 6.0.300
+    DOTNETVERSION: 8.0.100-rc.2.23502.2
 
 jobs:
   buildmacCatalyst:
@@ -28,7 +28,7 @@ jobs:
         shell: bash
         run: |
           curl -o dotnet-install.sh -sSL https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
-          sh dotnet-install.sh --version $(DotNetVersion)
+          sh dotnet-install.sh --version ${{env.DOTNETVERSION}}
           dotnet --list-sdks  
 
       - name: List installed .NET info
