@@ -2,7 +2,7 @@ name: buildCI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main,netconf ]
   pull_request:
     branches: [ main ]
 
@@ -12,7 +12,7 @@ env:
     DOTNETVERSION: 8.0.100-rc.2.23502.2
 
 jobs:
-  buildMauiLib:
+  buildMauiApp:
     runs-on: macos-13
     
     steps:
