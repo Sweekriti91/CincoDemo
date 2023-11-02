@@ -118,9 +118,16 @@ stages:
     #       **/*.app
     #       **/*.ipa
     #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+    # https://marketplace.visualstudio.com/items?itemName=ms-vsclient.app-store
+    - task: AppStoreRelease@1
+      inputs:
+        releaseTrack: 'TestFlight'
+        appIdentifier: 'com.maui.TestApp1'
+        appType: 'iOS'
+        appSpecificId: '<ValueFromAppStoreConnect>'
     
   # https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
-  
     - task: Bash@3
       displayName: Build Android App
       inputs:
@@ -130,11 +137,28 @@ stages:
           dotnet publish -f net8.0-android -c Release
 
     # Signing Android App : https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-android-app
-
+    
+    # - task: AndroidSigning@3
+    #   inputs:
+    #     apkFiles: '**/*.apk'
+    #     apksignerKeystoreFile: '<filepath>'
+    #     apksignerKeystorePassword: '<keystorepass>'
+    #     apksignerKeystoreAlias: '<alias>'
+    #     apksignerKeyPassword: '<keypass>'
+    
     - task: CopyFiles@2
       inputs:
         Contents: 'CincoApp.MAUI/bin/Release/net8.0-android/*.apk'
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    
+    # https://marketplace.visualstudio.com/items?itemName=ms-vsclient.google-play
+
+    # - task: GooglePlayRelease@4
+    #   inputs:
+    #     applicationId: 'com.maui.TestApp1'
+    #     action: 'SingleBundle'
+    #     bundleFile: '<pathtoAAB>'
+    #     track: 'internal'
 
     - task: PublishBuildArtifacts@1
       inputs:
@@ -142,47 +166,6 @@ stages:
         ArtifactName: 'drop_ios_maccatalyst'
         publishLocation: 'Container'
 
-  - job: BuildWebApps
-    displayName: Build Cinco Web Apps
-    pool:
-      vmImage: 'macOS-13'
-      demands:
-      - MSBuild
 
-    steps:
-
-    # - task: UseDotNet@2
-    #   displayName: .NET Version
-    #   inputs:
-    #     packageType: 'sdk'
-    #     version: '$(DotNetVersion)'
-
-    - task: Bash@3
-      displayName: Install .NET 8 Preview
-      inputs:
-        targetType: 'inline'
-        script: |
-          curl -o dotnet-install.sh -sSL https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
-          sh dotnet-install.sh --version $(DotNetVersion)
-          dotnet --list-sdks
-
-    - task: Bash@3
-      displayName: Build Web App
-      inputs:
-        targetType: 'inline'
-        script: |
-          cd CincoApp.Web/
-          dotnet publish -c Release --output ./webArtifact
-    - task: CopyFiles@2
-      inputs:
-        Contents: |
-          **\**\CincoApp.Web\webArtifact\**
-          CincoApp.Web\webArtifact\**
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'Web_drop'
-        publishLocation: 'Container'
 
  
