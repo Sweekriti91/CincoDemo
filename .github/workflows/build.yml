@@ -2,7 +2,7 @@ name: buildCI
 
 on:
   push:
-    branches: [ main,netconf ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -48,7 +48,7 @@ jobs:
         shell: bash
         run: |
           cd CincoApp.Tests/
-          dotnet test CincoApp.Tests.csproj --logger trx --configuration Debug --collect:"XPlat Code Coverage"
+          dotnet test CincoApp.Tests.csproj --logger "trx;LogFileName=test-results.trx" --configuration Debug --collect:"XPlat Code Coverage"
 
     # https://github.com/marketplace/actions/test-reporter
       - name: Test Report
@@ -59,6 +59,7 @@ jobs:
           path: '**/*.trx'             # Path to test results
           reporter: dotnet-trx        # Format of test results
 
+    
       
       - name: Run Unit Test
         shell: bash
