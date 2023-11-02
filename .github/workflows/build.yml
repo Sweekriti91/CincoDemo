@@ -43,3 +43,32 @@ jobs:
       - name: Restore nuget packages
         run: |
           dotnet restore CincoDemo.sln
+
+      - name: Run Unit Test
+        shell: bash
+        run: |
+          cd CincoApp.Tests/
+          dotnet test CincoApp.Tests.csproj --logger trx --configuration Debug --collect:"XPlat Code Coverage"
+
+    # https://github.com/marketplace/actions/test-reporter
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()    # run this step even if previous step failed
+        with:
+          name: Unit Tests            # Name of the check run which will be created
+          path: '**/*.trx'             # Path to test results
+          reporter: dotnet-trx        # Format of test results
+
+      
+      - name: Run Unit Test
+        shell: bash
+        run: |
+          cd CincoApp.Maui/
+          dotnet publish -f net8.0-maccatalyst -c Release -p:BuildIpa=True -o ./artifacts
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: artifacts-nuget
+          path: |
+            **/*.pkg
+      
