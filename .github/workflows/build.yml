@@ -50,13 +50,18 @@ jobs:
           cd CincoApp.Tests/
           dotnet test CincoApp.Tests.csproj --logger "trx;LogFileName=test-results.trx" --configuration Debug --collect:"XPlat Code Coverage"
 
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
     # https://github.com/marketplace/actions/publish-test-results
 
       - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action/composite@v2
+        uses: EnricoMi/publish-unit-test-result-action/composite@v2.11.0
         if: always()
         with:
-          trx_files: "CincoApp.Tests/TestResults/test-results.trx"
+          trx_files: "**/*.trx"
       
       - name: Build MacCatalyst
         shell: bash
