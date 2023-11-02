@@ -10,6 +10,9 @@ on:
 
 env:
     DOTNETVERSION: 8.0.100-rc.2.23502.2
+    
+permissions:
+  checks: write
 
 jobs:
   buildMauiApp:
