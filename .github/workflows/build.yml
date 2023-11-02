@@ -49,7 +49,7 @@ jobs:
         if: success() || failure()
         with:
           name: Unit Test Report
-          path: '**/*.trx'
+          path: CincoApp.Tests/TestResults/*.trx
           reporter: dotnet-trx
       
 
