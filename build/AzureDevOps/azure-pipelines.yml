@@ -30,11 +30,6 @@ stages:
     #     provisioningProfileLocation: 'secureFiles'
     #     provProfileSecureFile: '<IOS_PROVISIONING_PROFILE>'
 
-    # - task: UseDotNet@2
-    #   displayName: .NET Version
-    #   inputs:
-    #     packageType: 'sdk'
-    #     version: '$(DotNetVersion)'
 
     - task: Bash@3
       displayName: Install .NET 8 Preview
@@ -120,12 +115,12 @@ stages:
     #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
     # https://marketplace.visualstudio.com/items?itemName=ms-vsclient.app-store
-    - task: AppStoreRelease@1
-      inputs:
-        releaseTrack: 'TestFlight'
-        appIdentifier: 'com.maui.TestApp1'
-        appType: 'iOS'
-        appSpecificId: '<ValueFromAppStoreConnect>'
+    # - task: AppStoreRelease@1
+    #   inputs:
+    #     releaseTrack: 'TestFlight'
+    #     appIdentifier: 'com.maui.TestApp1'
+    #     appType: 'iOS'
+    #     appSpecificId: '<ValueFromAppStoreConnect>'
     
   # https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
     - task: Bash@3
