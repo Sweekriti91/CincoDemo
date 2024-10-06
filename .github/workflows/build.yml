@@ -9,33 +9,33 @@ on:
   workflow_dispatch:
 
 env:
-    DOTNETVERSION: 8.0.100-rc.2.23502.2
+    DOTNETVERSION: 8.0.402
     
 permissions:
   checks: write
 
 jobs:
   buildMauiApp:
-    runs-on: macos-13
+    runs-on: macos-14
     
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install .NET 8
-        shell: bash
-        run: |
-          curl -o dotnet-install.sh -sSL https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
-          sh dotnet-install.sh --version ${{env.DOTNETVERSION}}
-          dotnet --list-sdks  
+      # - name: Install .NET 8
+      #   shell: bash
+      #   run: |
+      #     curl -o dotnet-install.sh -sSL https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
+      #     sh dotnet-install.sh --version ${{env.DOTNETVERSION}}
+      #     dotnet --list-sdks  
 
-      - name: List installed .NET info
-        shell: pwsh
-        run: dotnet --info
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{env.DOTNETVERSION}}
 
       - name: Install .NET MAUI
         shell: bash
         run: |
-          dotnet workload install maui macos ios wasm-tools
+          dotnet workload install maui macos ios wasm-tools --version ${{env.DOTNETVERSION}}
     
       - name: Restore nuget packages
         run: |
