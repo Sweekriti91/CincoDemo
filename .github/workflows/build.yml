@@ -68,7 +68,7 @@ jobs:
           cd CincoApp.Maui/
           dotnet publish -f net8.0-android -c Release
           
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: artifacts-binaries
           path: |
